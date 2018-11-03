@@ -1,24 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tun-gl-3kM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--آزمون-->
+        <scene sceneID="jMA-z5-mVc">
+            <objects>
+                <viewController id="ijB-9Q-vUL" customClass="TestsView" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8B8-Gf-fnT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KDJ-Of-BDX"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="آزمون" image="azmune" id="Q2g-A9-cdo"/>
+                    <connections>
+                        <segue destination="PKd-xP-gmQ" kind="show" identifier="test" id="UiE-or-2ic"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ob1-mW-3Yz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-999" y="-609"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="wrN-Ui-sfQ">
+            <objects>
+                <tabBarController id="WZU-h0-E2k" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qxn-n8-4gJ"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SR5-Xo-xFx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="2YQ-b5-RwZ"/>
+                        <segue destination="ijB-9Q-vUL" kind="relationship" relationship="viewControllers" id="Xtc-YV-QJO"/>
+                        <segue destination="mOR-n5-Nnl" kind="relationship" relationship="viewControllers" id="8aL-H3-dda"/>
+                        <segue destination="qK3-sy-2P1" kind="relationship" relationship="viewControllers" id="BZd-8t-U3X"/>
+                        <segue destination="Dwf-LE-psL" kind="relationship" relationship="viewControllers" id="BwN-4D-AUH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vcr-0s-DJf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-999" y="118"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GUe-2w-oeV">
+            <objects>
+                <navigationController id="tun-gl-3kM" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8ky-9Z-K3Q">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WZU-h0-E2k" kind="relationship" relationship="rootViewController" id="aLx-Dh-uYU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3p-eQ-dIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1895" y="117"/>
+        </scene>
+        <!--بلاگ-->
+        <scene sceneID="YNk-6S-X6j">
+            <objects>
+                <viewController id="mOR-n5-Nnl" customClass="Blog" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DnU-5F-Izi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JnV-qc-W4Y"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="بلاگ" image="weblog" id="R5w-Qv-S8c"/>
+                    <connections>
+                        <segue destination="Vdv-p3-Zbq" kind="show" identifier="post" id="T0O-Dd-25e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfo-6m-YNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="315"/>
+        </scene>
+        <!--Shop Item-->
+        <scene sceneID="D2p-rl-oAu">
+            <objects>
+                <viewController id="Vcc-kN-SiG" customClass="ShopItem" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f3d-Dd-zfE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="O8k-U4-4tH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Acp-45-08V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1130" y="1"/>
+        </scene>
+        <!--خانه-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="Home" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="خانه" image="home" id="cPQ-5M-zH4"/>
+                    <connections>
+                        <segue destination="mOR-n5-Nnl" kind="presentation" identifier="blog" id="GXt-qB-Kd5"/>
+                        <segue destination="qK3-sy-2P1" kind="presentation" identifier="shop" id="c40-1M-k8q"/>
+                        <segue destination="Vdv-p3-Zbq" kind="show" identifier="post" id="wvm-oT-9pM"/>
+                        <segue destination="Vcc-kN-SiG" kind="show" identifier="shopItem" id="h4U-Ke-mJM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="118" y="-375"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="zmx-3q-fLt">
+            <objects>
+                <viewController id="Vdv-p3-Zbq" customClass="Post" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7dh-2t-blk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JCz-8h-zUC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="brq-t6-eYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1130" y="-673"/>
+        </scene>
+        <!--Shopping Card-->
+        <scene sceneID="wti-jI-gfW">
+            <objects>
+                <viewController id="19h-l2-Uc3" customClass="ShoppingCard" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cQY-bz-cF7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Spj-FH-Ip3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8E-6F-E6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1660" y="1021"/>
+        </scene>
+        <!--پروفایل-->
+        <scene sceneID="5sQ-V7-p7S">
+            <objects>
+                <viewController id="Dwf-LE-psL" customClass="Profile" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lCd-b2-M7X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="468-IZ-Nq6"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="پروفایل" image="M-Profile" id="jLF-w9-7WN"/>
+                    <connections>
+                        <segue destination="b4P-6I-rnl" kind="show" identifier="blogEnrollment" id="FR5-N7-0cw"/>
+                        <segue destination="19h-l2-Uc3" kind="show" identifier="shoppingCard" id="Vef-zh-o69"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bN0-IJ-MuJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-782" y="1021"/>
+        </scene>
+        <!--Blog Enrollment-->
+        <scene sceneID="Xx3-YG-70A">
+            <objects>
+                <viewController id="b4P-6I-rnl" customClass="BlogEnrollment" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bbb-Gn-5kf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5dU-2k-zBD"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="P5O-nY-mXy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRL-Wh-vNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-783" y="1746"/>
+        </scene>
+        <!--فروشگاه-->
+        <scene sceneID="pGT-oK-fdQ">
+            <objects>
+                <viewController id="qK3-sy-2P1" customClass="Shop" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cIM-Sa-7dt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cA8-E0-Uuo"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="فروشگاه" image="shop" id="8RC-cb-d9v"/>
+                    <connections>
+                        <segue destination="Vcc-kN-SiG" kind="show" identifier="shopItem" id="Xsf-1R-drc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ix-J7-A2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="1021"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="OAc-1U-MOr">
+            <objects>
+                <viewController id="PKd-xP-gmQ" customClass="ViewController" customModule="SAT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QCD-Sv-Z26">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YBo-bK-Npy"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="PR3-TC-wbT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w5b-82-bSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="-1325"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="M-Profile" width="32" height="32"/>
+        <image name="azmune" width="32" height="32"/>
+        <image name="home" width="32" height="32"/>
+        <image name="shop" width="32" height="32"/>
+        <image name="weblog" width="32" height="32"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BZd-8t-U3X"/>
+        <segue reference="T0O-Dd-25e"/>
+        <segue reference="Xsf-1R-drc"/>
+        <segue reference="8aL-H3-dda"/>
+    </inferredMetricsTieBreakers>
 </document>
