@@ -21,10 +21,24 @@ class ShoppingCard: UIViewController, UICollectionViewDelegate, UICollectionView
     var payOnLocation = UIButton()
     var payOnline = UIButton()
     
+    var shadowPanel = UIView()
+    var deleteItemView = UIView()
+    var deleteItemIndex = Int()
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         let subViews = self.view.subviews
         for subView in subViews {
+            subView.removeFromSuperview()
+        }
+
+        let panelSubViews = self.shadowPanel.subviews
+        for subView in panelSubViews {
+            subView.removeFromSuperview()
+        }
+
+        let deleteItemSubViews = self.deleteItemView.subviews
+        for subView in deleteItemSubViews {
             subView.removeFromSuperview()
         }
 
@@ -108,15 +122,46 @@ class ShoppingCard: UIViewController, UICollectionViewDelegate, UICollectionView
                 buttons.append(button)
             }
             
-            for i in 0..<buttons.count {
+            for i in 0 ..< buttons.count {
                 buttons[i].addTarget(self, action: #selector(selectAddress), for: .touchUpInside)
                 buttons[i].tag = i
                 contentScrollView.addSubview(buttons[i])
             }
             
-            for i in 0..<Global.productInfo.count {
+            for i in 0 ..< Global.productInfo.count {
                 productCount.append(1)
             }
+            
+            // delete item panel
+            shadowPanel.frame = CGRect(x: 0, y: view.frame.size.height, width: view.frame.size.width, height: view.frame.size.height)
+            shadowPanel.backgroundColor = UIColor.init(white: 0.1, alpha: 0.5)
+            deleteItemView.frame = CGRect(x: view.frame.size.width / 10, y: view.frame.size.height * 5 / 12, width: view.frame.size.width * 8 / 10, height: view.frame.size.height / 6)
+            deleteItemView.layer.masksToBounds = true
+            deleteItemView.layer.cornerRadius = 15
+            deleteItemView.backgroundColor = UIColor(hex: "f2f2f2")
+            let alertLabel = UILabel(frame: CGRect(x: 0, y: 0, width: deleteItemView.frame.width, height: deleteItemView.frame.size.height / 3))
+            alertLabel.text = "آیا این محصول از سبد خرید حذف شود؟"
+            alertLabel.textAlignment = .center
+            alertLabel.textColor = UIColor.darkGray
+            deleteItemView.addSubview(alertLabel)
+            let yes = UIButton(frame: CGRect(x: deleteItemView.frame.width / 2 + 5, y: deleteItemView.frame.size.height * 2 / 3, width: deleteItemView.frame.width / 2 - 10, height: deleteItemView.frame.size.height / 3 - 5))
+            yes.addTarget(self, action: #selector(deleteItem), for: .touchUpInside)
+            yes.setTitle("آره", for: .normal)
+            yes.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24.0)
+            yes.backgroundColor = UIColor.red
+            yes.layer.masksToBounds = true
+            yes.layer.cornerRadius = 15
+            deleteItemView.addSubview(yes)
+            let no = UIButton(frame: CGRect(x: 5, y: deleteItemView.frame.size.height * 2 / 3, width: deleteItemView.frame.width / 2 - 10, height: deleteItemView.frame.size.height / 3 - 5))
+            no.addTarget(self, action: #selector(keepItem), for: .touchUpInside)
+            no.setTitle("نه", for: .normal)
+            no.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24.0)
+            no.backgroundColor = UIColor.green
+            no.layer.masksToBounds = true
+            no.layer.cornerRadius = 15
+            deleteItemView.addSubview(no)
+            shadowPanel.addSubview(deleteItemView)
+            view.addSubview(shadowPanel)
         }
     }
     
@@ -176,8 +221,32 @@ class ShoppingCard: UIViewController, UICollectionViewDelegate, UICollectionView
     }
     
     @objc func minus(sender: UIButton) {
-        productCount[sender.tag] -= 1
-        itemCollection.reloadData()
+        if productCount[sender.tag] > 1 {
+            productCount[sender.tag] -= 1
+            itemCollection.reloadData()
+        } else {
+            deleteItemIndex = sender.tag
+            activateDeletePanel()
+        }
+    }
+    
+    func activateDeletePanel() {
+        UIView.animate(withDuration: 0.2) {
+            self.shadowPanel.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        }
+    }
+    
+    @objc func deleteItem() {
+        UIView.animate(withDuration: 0.2) {
+            self.shadowPanel.frame = CGRect(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        }
+    }
+    
+    @objc func keepItem() {
+        productCount[deleteItemIndex] = 1
+        UIView.animate(withDuration: 0.2) {
+            self.shadowPanel.frame = CGRect(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -240,6 +309,7 @@ class itemViewCollectionCell: UICollectionViewCell {
         minus.backgroundColor = UIColor.red
         minus.layer.masksToBounds = true
         minus.layer.cornerRadius = 15
+        minus.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(minus)
         
         count.frame = CGRect(x: 40, y: frame.height / 2 - 15, width: 30, height: 30)
@@ -251,6 +321,7 @@ class itemViewCollectionCell: UICollectionViewCell {
         add.backgroundColor = UIColor.green
         add.layer.masksToBounds = true
         add.layer.cornerRadius = 15
+        add.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(add)
     }
     

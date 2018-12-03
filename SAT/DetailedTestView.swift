@@ -1,14 +1,14 @@
 //
-//  TestsView.swift
+//  DetailedTestView.swift
 //  SAT
 //
-//  Created by Vahid Ghanbarpour on 10/29/18.
+//  Created by Vahid Ghanbarpour on 11/7/18.
 //  Copyright © 2018 Vahid Ghanbarpour. All rights reserved.
 //
 
 import UIKit
 
-class TestsView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class DetailedTestView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var testsCollection: UICollectionView!
     var testItems = [String]()
@@ -26,13 +26,13 @@ class TestsView: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.tabBarController!.title = "آزمون ها"
+        self.title = Global.testTitle
         
         let shopFlowLayout = UICollectionViewFlowLayout()
         shopFlowLayout.scrollDirection = .vertical
         
-        testsCollection = UICollectionView(frame: CGRect(x: view.frame.size.width / 20, y: (UIApplication.shared.statusBarView?.frame.size.height)! + (navigationController?.navigationBar.frame.size.height)! , width: view.frame.size.width * 18 / 20, height: view.frame.size.height - (tabBarController?.tabBar.frame.size.height)! - (navigationController?.navigationBar.frame.size.height)! - (UIApplication.shared.statusBarView?.frame.size.height)!), collectionViewLayout: shopFlowLayout)
-        testsCollection.register(testsCollectionCell.self, forCellWithReuseIdentifier: "testsCollectionCell")
+        testsCollection = UICollectionView(frame: CGRect(x: view.frame.size.width / 20, y: (UIApplication.shared.statusBarView?.frame.size.height)! + (navigationController?.navigationBar.frame.size.height)! , width: view.frame.size.width * 18 / 20, height: view.frame.size.height - (navigationController?.navigationBar.frame.size.height)! - (UIApplication.shared.statusBarView?.frame.size.height)!), collectionViewLayout: shopFlowLayout)
+        testsCollection.register(detailedTestsCollectionCell.self, forCellWithReuseIdentifier: "detailedTestsCollectionCell")
         testsCollection.delegate = self
         testsCollection.dataSource = self
         testsCollection.backgroundColor = UIColor.clear
@@ -51,7 +51,7 @@ class TestsView: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "testsCollectionCell", for: indexPath) as! testsCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailedTestsCollectionCell", for: indexPath) as! detailedTestsCollectionCell
         
         cell.backgroundColor = UIColor.gray
         
@@ -63,8 +63,7 @@ class TestsView: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Global.testTitle = testItems[indexPath.row]
-        performSegue(withIdentifier: "test", sender: self)
+        performSegue(withIdentifier: "takeTest", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -76,7 +75,7 @@ class TestsView: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     }
 }
 
-class testsCollectionCell: UICollectionViewCell {
+class detailedTestsCollectionCell: UICollectionViewCell {
     
     var title: UILabel!
     

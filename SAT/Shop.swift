@@ -18,6 +18,8 @@ class Shop: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         for subView in subViews {
             subView.removeFromSuperview()
         }
+        
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +30,8 @@ class Shop: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         let shopFlowLayout = UICollectionViewFlowLayout()
         shopFlowLayout.scrollDirection = .vertical
         
+        self.tabBarController!.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(openShoppingCard)), animated: true)
+        
         shopCollection = UICollectionView(frame: CGRect(x: view.frame.size.width / 20, y: (UIApplication.shared.statusBarView?.frame.size.height)! + (navigationController?.navigationBar.frame.size.height)! , width: view.frame.size.width * 18 / 20, height: view.frame.size.height - (tabBarController?.tabBar.frame.size.height)! - (UIApplication.shared.statusBarView?.frame.size.height)! - (navigationController?.navigationBar.frame.size.height)!), collectionViewLayout: shopFlowLayout)
         shopCollection.register(shopViewCollectionCell.self, forCellWithReuseIdentifier: "shopViewCollectionCell")
         shopCollection.delegate = self
@@ -37,6 +41,10 @@ class Shop: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         shopCollection.showsVerticalScrollIndicator = false
         shopCollection.showsHorizontalScrollIndicator = false
         view.addSubview(shopCollection)
+    }
+    
+    @objc func openShoppingCard() {
+        performSegue(withIdentifier: "shoppingCard", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

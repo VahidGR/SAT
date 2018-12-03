@@ -11,7 +11,12 @@ import UIKit
 class BlogEnrollment: UIViewController {
     
     var enrollButton = UIButton()
+    var remainingSubscription = UILabel()
+    var subscriptionPros = UILabel()
     var enrollmentPanel = UIView()
+    
+    let relativeFontConstant:CGFloat = 0.025
+    let relativeFontConstantT:CGFloat = 0.05
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
@@ -25,7 +30,21 @@ class BlogEnrollment: UIViewController {
         super.viewWillAppear(true)
 
         self.title = "اشتراک بلاگ"
+        
+        remainingSubscription.frame = CGRect(x: 0, y: (UIApplication.shared.statusBarView?.frame.size.height)! + (navigationController?.navigationBar.frame.size.height)!, width: view.frame.size.width, height: view.frame.size.height / 4)
+        remainingSubscription.text = "۳۰ روز باقی مانده"
+        remainingSubscription.textAlignment = .center
+        remainingSubscription.textColor = UIColor.gray
+        remainingSubscription.font = remainingSubscription.font.withSize(self.view.frame.height * self.relativeFontConstantT)
+        view.addSubview(remainingSubscription)
 
+        subscriptionPros.frame = CGRect(x: 20, y: remainingSubscription.frame.origin.y + remainingSubscription.frame.size.height, width: view.frame.size.width - 40, height: 100)
+        subscriptionPros.text = "بازدید از پست های ویژه"
+        subscriptionPros.textColor = UIColor.purple
+        subscriptionPros.textAlignment = .center
+        subscriptionPros.font = subscriptionPros.font.withSize(self.view.frame.height * self.relativeFontConstant)
+        view.addSubview(subscriptionPros)
+        
         enrollButton.frame = CGRect(x: 0, y: view.frame.height * 9 / 10, width: view.frame.size.width, height: view.frame.height / 10)
         enrollButton.backgroundColor = UIColor.red
         enrollButton.setTitle("Enroll", for: .normal)

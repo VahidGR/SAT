@@ -21,6 +21,10 @@ struct Global {
     static var postsImages = ["p1", "p2", "p3"]
     static var postsThumbnails = ["p1th", "p2th", "p3th"]
     static var firstTime = true // for tests
+    static var testTitle = String()
+    static var profilePicture = UIImage()
+    static var profileName = String()
+    static var educationIndex = Int()
 }
 
 class Home: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
