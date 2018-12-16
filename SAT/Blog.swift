@@ -34,7 +34,7 @@ class Blog: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         for subView in filterSubViews {
             subView.removeFromSuperview()
         }
-    }
+    } // Mark - filterView disapears after changing view while the filterVIew is open
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -64,10 +64,14 @@ class Blog: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         self.segmentedControl = UISegmentedControl(items: items)
         self.segmentedControl.selectedSegmentIndex = self.selectedSegment
         self.segmentedControl.tintColor = .clear
-        self.segmentedControl.backgroundColor = UIColor.blue
-        self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .normal)
+        self.segmentedControl.backgroundColor = UIColor.clear
+        self.segmentedControl.layer.borderWidth = 1
+        self.segmentedControl.layer.borderColor = UIColor.blue.cgColor
+        self.segmentedControl.subviews[0].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 0.5)
+        self.segmentedControl.subviews[1].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 1)
+        self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .normal)
         self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .selected)
-        self.segmentedControl.frame = CGRect(x: self.filterView.frame.size.width / 4, y: (self.navigationController?.navigationBar.frame.size.height)! + 10, width: self.filterView.frame.size.width / 2, height: self.filterView.frame.size.height / 16)
+        self.segmentedControl.frame = CGRect(x: self.filterView.frame.size.width / 6, y: (self.navigationController?.navigationBar.frame.size.height)! + 10, width: self.filterView.frame.size.width * 2 / 3, height: self.filterView.frame.size.height / 18)
         self.segmentedControl.addTarget(self, action: #selector(self.segmentedControlAction(_:)), for: .valueChanged)
         self.segmentedControl.layer.masksToBounds = true
         self.segmentedControl.layer.cornerRadius = 10
@@ -135,11 +139,23 @@ class Blog: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         switch sender.selectedSegmentIndex {
         case 0:
             typeFilter()
+            self.segmentedControl.subviews[0].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 0.5)
+            self.segmentedControl.subviews[1].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 1)
+            self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .normal)
+            self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .selected)
             break
         case 1:
             countryFilter()
+            self.segmentedControl.subviews[1].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 0.5)
+            self.segmentedControl.subviews[0].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 1)
+            self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .normal)
+            self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .selected)
             break
         default:
+            self.segmentedControl.subviews[0].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 0.5)
+            self.segmentedControl.subviews[1].tintColor = UIColor.init(red: 0, green: 0, blue: 1, alpha: 1)
+            self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .normal)
+            self.segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .selected)
             typeFilter()
             break
         }
